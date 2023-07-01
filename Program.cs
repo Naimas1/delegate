@@ -1,23 +1,41 @@
-﻿using System;
-namespace DelegateExample;
-public class Program
-{
-    public delegate void MessageDelegate(string message);
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-    public class Prog
+namespace ArithmeticCalculator
+{
+    class Programas
     {
         static void Main(string[] args)
         {
-            MessageDelegate messageDelegate = ShowMessage;
+            ArithmeticOperation operationDelegate = Add;
 
-            messageDelegate("Привіт!");
-            messageDelegate("Це текстове повідомлення.");
+            int result = operationDelegate.Invoke(5, 3);
+            Console.WriteLine("Результат додавання: " + result);
+
+            operationDelegate = Subtract;
+            result = operationDelegate.Invoke(7, 2);
+            Console.WriteLine("Результат віднімання: " + result);
+
+            operationDelegate = Multiply;
+            result = operationDelegate.Invoke(4, 6);
+            Console.WriteLine("Результат множення: " + result);
 
             Console.ReadKey();
         }
-        static void ShowMessage(string message)
+        static int Add(int a, int b)
         {
-            Console.WriteLine("Повідомлення: " + message);
+            return a + b;
+        }
+        static int Subtract(int a, int b)
+        {
+            return a - b;
+        }
+        static int Multiply(int a, int b)
+        {
+            return a * b;
         }
     }
 }
